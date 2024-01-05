@@ -1,16 +1,17 @@
 const express = require('express');
-const { startTracing, trace } = require('@google-cloud/trace-agent');
+const { start } = require('@google-cloud/trace-agent');
 const app = express();
 const port = 8080;
 
-// Initialize the trace agent
-startTracing();
+// Set your GCP project ID
+const projectId = 'whiz-dev-ankit';
 
-// Sample endpoint with tracing
+// Initialize the trace agent with the project ID
+start({ projectId });
+
+// Sample endpoint without tracing
 app.get('/', (req, res) => {
-  trace.createChildSpan({ name: 'sample-endpoint' }, () => {
-    res.send('Hello, Cloud Trace!');
-  });
+  res.send('Hello, Cloud Trace!');
 });
 
 // Start the server

@@ -8,7 +8,10 @@ WORKDIR /app
 COPY package*.json ./
 
 # Install application dependencies
-RUN npm install
+RUN npm install express @google-cloud/trace-agent
+
+# # Install application dependencies
+# RUN npm install
 
 # Copy the application code to the working directory
 COPY . .
