@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cloud-trace-sample
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: cloud-trace-sample
+  template:
+    metadata:
+      labels:
+        app: cloud-trace-sample
+    spec:
+      containers:
+      - name: cloud-trace-sample
+        image: gcr.io/your-project-id/cloud-trace-sample:1.0  # Update with your GCR image URL
+        ports:
+        - containerPort: 8080
